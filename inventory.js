@@ -61,30 +61,14 @@ if (foundShoe) {
 	console.error("Shoe not found");
 }
 
-// A function to look for the cheapest shoe in the list
-function findCheapestShoe() {
-	if (shoes.length === 0) return undefined;
+// or even simpler
+const pickCheaper = (a, b) => (a.value < b.value ? a : b);
+const pickPizon = (a, b) => (a.value > b.value ? a : b);
 
-	return shoes.reduce(
-		// Compare the current iteration shoe with the cheapest shoe
-		(cheapest, next) => {
-			if (next.value < cheapest.value) {
-				return next;
-			}
-			return cheapest;
-		},
-		// Initial value is the first shoe in the array
-		shoes[0],
-	);
+if (shoes.length !== 0) {
+	console.table(shoes.reduce(pickCheaper));
+	console.table(shoes.reduce(pickPizon));
 }
-console.table(findCheapestShoe());
-
-// A function to look for the most expensive shoe in the list
-function findMostExpensiveShoe() {
-	shoes.sort((a, b) => b.value - a.value);
-	return shoes[0];
-}
-console.table(findMostExpensiveShoe());
 
 // A function to edit shoe's properties. Expects shoes[index], properties name and a new value
 function editShoeInformation(shoesInstance, property, newProperty) {

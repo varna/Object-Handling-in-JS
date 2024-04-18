@@ -70,6 +70,24 @@ if (shoes.length !== 0) {
 	console.table(shoes.reduce(pickPizon));
 }
 
+// NOTE 1: array.sort() mutates the original array, so it's not necessary to return it, or wrap it in a function. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+// NOTE 2: if you need to keep original array, use array.toSorted()
+//
+// function orderPriceIncreasing() {
+// 	shoes.sort((a, b) => a.value - b.value);
+// 	return shoes;
+// }
+// console.table(orderPriceIncreasing());
+
+// A function to order the shoes from the cheapest to most expensive
+shoes.sort(pickCheaper);
+
+// a function to return a new array with sorted shoes
+const shoesSortedByPrice = shoes.toSorted(pickCheaper);
+const shoesSortedByPriceDesc = shoes.toSorted(pickPizon);
+
+console.table({ shoes, shoesSortedByPrice, shoesSortedByPriceDesc });
+
 // A function to edit shoe's properties. Expects shoes[index], properties name and a new value
 function editShoeInformation(shoesInstance, property, newProperty) {
 	// setting up some exception handling with the following if statement
@@ -100,10 +118,3 @@ try {
 } catch (error) {
 	console.log("Error editing shoe information: ", error.message);
 }
-
-// A function to order the shoes from the cheapest to most expensive
-function orderPriceIncreasing() {
-	shoes.sort((a, b) => a.value - b.value);
-	return shoes;
-}
-console.table(orderPriceIncreasing());

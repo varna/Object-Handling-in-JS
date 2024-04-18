@@ -15,30 +15,50 @@ const shoes = [
 	new Shoe("Generic", 52752263, 9, 14.99),
 ];
 
-// A function to search for any Shoe in the array. Expects a property and a seach input
+// This is very VERY bad.
+// 1. You don't know how for..in loop works. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
+// 2. Why didn't you just use .find() like seen in docs? https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+// 3. You are make a double loop, which is not needed and probably bugged.
+// 4. You are breaking `Shoe` by redeclaring it (explained in step 1)
+// 5. You are not using `found` variable at all.
+// 6. You are throwing an error. Why? Wouldn't it be easier to return `undefined` if you don't find anything. It would be easier to use this function. You woulnd't need to wrap it in try..catch all the time.
+// 7. You used `==` instead of `===`. Only do that if you know what you are doing.
+//
+// function findShoe(property, searchInput) {
+// 	// Adding this for exception handling
+// 	const found = false;
+
+// 	for (Shoes in shoes) {
+// 		if (shoes.find((c) => c[property] == searchInput)) {
+// 			return shoes[Shoes];
+// 		}
+// 	}
+
+// 	if (!found) {
+// 		// this is where the initial found status is used for exception handling
+// 		throw new Error(
+// 			`Could not find a shoe with such properties or property values`,
+// 		);
+// 	}
+// }
+
+// // Running the findShoe function with exception handling
+// try {
+// 	console.table(findShoe("quantity", 2));
+// } catch (error) {
+// 	console.log("Error finding shoes: ", error.message);
+// }
+
+// This is how you should do it.
 function findShoe(property, searchInput) {
-	// Adding this for exception handling
-	const found = false;
-
-	for (Shoes in shoes) {
-		if (shoes.find((c) => c[property] == searchInput)) {
-			return shoes[Shoes];
-		}
-	}
-
-	if (!found) {
-		// this is where the initial found status is used for exception handling
-		throw new Error(
-			`Could not find a shoe with such properties or property values`,
-		);
-	}
+	return shoes.find((shoe) => shoe[property] === searchInput);
 }
 
-// Running the findShoe function with exception handling
-try {
-	console.table(findShoe("quantity", 2));
-} catch (error) {
-	console.log("Error finding shoes: ", error.message);
+const foundShoe = findShoe("quantity", 2);
+if (foundShoe) {
+	console.table(foundShoe);
+} else {
+	console.error("Shoe not found");
 }
 
 // A function to look for the cheapest shoe in the list

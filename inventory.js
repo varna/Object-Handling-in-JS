@@ -1,17 +1,17 @@
 // A function describing the shoe object contructor and it's properties
-function Shoes(name, productCode, quantity, value) {
+function Shoe(name, productCode, quantity, value) {
 	this.name = name;
 	this.productCode = productCode;
 	this.quantity = quantity;
 	this.value = value;
 }
 
-// This is where five instances of Shoes are created
-let shoe1 = new Shoes("Converse", 6343654365, 10, 19.99);
-let shoe2 = new Shoes("Crocs", 53135135, 2, 34.99);
-let shoe3 = new Shoes("Birkenstock", 2752752752, 4, 89.99);
-let shoe4 = new Shoes("New Balance", 7275725756, 50, 44.99);
-let shoe5 = new Shoes("Generic", 52752263, 9, 14.99);
+// This is where five instances of Shoe are created
+let shoe1 = new Shoe("Converse", 6343654365, 10, 19.99);
+let shoe2 = new Shoe("Crocs", 53135135, 2, 34.99);
+let shoe3 = new Shoe("Birkenstock", 2752752752, 4, 89.99);
+let shoe4 = new Shoe("New Balance", 7275725756, 50, 44.99);
+let shoe5 = new Shoe("Generic", 52752263, 9, 14.99);
 
 // This is where all the shoe instances are pushed into an array
 let shoeArray = [];

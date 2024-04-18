@@ -63,8 +63,19 @@ if (foundShoe) {
 
 // A function to look for the cheapest shoe in the list
 function findCheapestShoe() {
-	shoes.sort((a, b) => a.value - b.value);
-	return shoes[0];
+	if (shoes.length === 0) return undefined;
+
+	return shoes.reduce(
+		// Compare the current iteration shoe with the cheapest shoe
+		(cheapest, next) => {
+			if (next.value < cheapest.value) {
+				return next;
+			}
+			return cheapest;
+		},
+		// Initial value is the first shoe in the array
+		shoes[0],
+	);
 }
 console.table(findCheapestShoe());
 

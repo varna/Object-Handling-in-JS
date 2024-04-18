@@ -7,20 +7,20 @@ function Shoe(name, productCode, quantity, value) {
 }
 
 // This is where five instances of Shoe are created
-let shoe1 = new Shoe("Converse", 6343654365, 10, 19.99);
-let shoe2 = new Shoe("Crocs", 53135135, 2, 34.99);
-let shoe3 = new Shoe("Birkenstock", 2752752752, 4, 89.99);
-let shoe4 = new Shoe("New Balance", 7275725756, 50, 44.99);
-let shoe5 = new Shoe("Generic", 52752263, 9, 14.99);
+const shoe1 = new Shoe("Converse", 6343654365, 10, 19.99);
+const shoe2 = new Shoe("Crocs", 53135135, 2, 34.99);
+const shoe3 = new Shoe("Birkenstock", 2752752752, 4, 89.99);
+const shoe4 = new Shoe("New Balance", 7275725756, 50, 44.99);
+const shoe5 = new Shoe("Generic", 52752263, 9, 14.99);
 
 // This is where all the shoe instances are pushed into an array
-let shoeArray = [];
+const shoeArray = [];
 shoeArray.push(shoe1, shoe2, shoe3, shoe4, shoe5);
 
 // A function to search for any Shoe in the array. Expects a property and a seach input
 function findShoe(property, searchInput) {
 	// Adding this for exception handling
-	let found = false;
+	const found = false;
 
 	for (Shoes in shoeArray) {
 		if (shoeArray.find((c) => c[property] == searchInput)) {

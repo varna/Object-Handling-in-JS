@@ -1,4 +1,4 @@
-//A function describing the shoe object contructor and it's properties
+// A function describing the shoe object contructor and it's properties
 function Shoes (name, productCode, quantity, value) {
     this.name = name;
     this.productCode = productCode;

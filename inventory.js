@@ -89,20 +89,20 @@ const shoesSortedByPriceDesc = shoes.toSorted(pickPizon);
 console.table({ shoes, shoesSortedByPrice, shoesSortedByPriceDesc });
 
 // A function to edit shoe's properties. Expects shoes[index], properties name and a new value
-function editShoeInformation(shoesInstance, property, value) {
+function editShoeInformation(shoe, property, value) {
 	// setting up some exception handling with the following if statement
 	if (
-		shoes.includes(shoesInstance) &&
-		// if (shoesInstance instanceof Shoes)
+		shoes.includes(shoe) &&
+		// if (shoe instanceof Shoes)
 
-		// for some reason this breaks if "shoesInstance instanceof Shoes" is put
+		// for some reason this breaks if "shoe instanceof Shoes" is put
 		// instead and the array conditional version. This ONLY happens if findShoe function is running too.
 		// Bizzare. Please provie some ideas why that would ever happen?
-		typeof shoesInstance[property] != "undefined" &&
+		typeof shoe[property] != "undefined" &&
 		typeof value === "number"
 	) {
-		const oldProperty = shoesInstance[property];
-		shoesInstance[property] = value;
+		const oldProperty = shoe[property];
+		shoe[property] = value;
 		return console.log(
 			`The ${property} was changed from ${oldProperty} to ${value}`,
 		);

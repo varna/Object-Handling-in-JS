@@ -89,7 +89,7 @@ const shoesSortedByPriceDesc = shoes.toSorted(pickPizon);
 console.table({ shoes, shoesSortedByPrice, shoesSortedByPriceDesc });
 
 // A function to edit shoe's properties. Expects shoes[index], properties name and a new value
-function editShoeInformation(shoesInstance, property, newProperty) {
+function editShoeInformation(shoesInstance, property, value) {
 	// setting up some exception handling with the following if statement
 	if (
 		shoes.includes(shoesInstance) &&
@@ -99,12 +99,12 @@ function editShoeInformation(shoesInstance, property, newProperty) {
 		// instead and the array conditional version. This ONLY happens if findShoe function is running too.
 		// Bizzare. Please provie some ideas why that would ever happen?
 		typeof shoesInstance[property] != "undefined" &&
-		typeof newProperty === "number"
+		typeof value === "number"
 	) {
 		const oldProperty = shoesInstance[property];
-		shoesInstance[property] = newProperty;
+		shoesInstance[property] = value;
 		return console.log(
-			`The ${property} was changed from ${oldProperty} to ${newProperty}`,
+			`The ${property} was changed from ${oldProperty} to ${value}`,
 		);
 		//I'd like to add the Shoe array index to output too, but I'm struggling with reference errors. Advice welcome
 	} else {

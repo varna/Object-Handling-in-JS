@@ -1,12 +1,34 @@
-// A function describing the shoe object contructor and it's properties
-function Shoe(name, productCode, quantity, value) {
-	this.name = name;
-	this.productCode = productCode;
-	this.quantity = quantity;
-	this.value = value;
+class Shoe {
+	constructor(name, productCode, quantity, value) {
+		// You should check here if the values are correct, and throw an error if they are not.
+		// if (typeof name !== "string") {
+		// 	throw new Error(`Name "${name}" isn't a string`);
+		// }
+		// etc.
+
+		this.name = name;
+		this.productCode = productCode;
+		this.quantity = quantity;
+		this.value = value;
+	}
+
+	updatePropertyValue(property, value) {
+		// throw for problems, instead of using else and drowning in nesting
+		if (!["productCode", "quantity", "value"].includes(property)) {
+			throw new Error(`Property "${property}" isn't allowed to be updated`);
+		}
+
+		// throw seperately instead of one big chain
+		if (typeof value !== "number") {
+			throw new Error(`Value "${value}" isn't a number`);
+		}
+
+		const oldValue = this[property];
+		this[property] = value;
+		console.log(`The ${property} was changed from ${oldValue} to ${value}`);
+	}
 }
 
-// Don't overcomplicate, name things as they are. Keep it short and simple.
 const shoes = [
 	new Shoe("Converse", 6343654365, 10, 19.99),
 	new Shoe("Crocs", 53135135, 2, 34.99),
@@ -88,33 +110,8 @@ const shoesSortedByPriceDesc = shoes.toSorted(pickPizon);
 
 console.table({ shoes, shoesSortedByPrice, shoesSortedByPriceDesc });
 
-// A function to edit shoe's properties. Expects shoes[index], properties name and a new value
-function editShoeInformation(shoe, property, value) {
-	// setting up some exception handling with the following if statement
-	if (
-		shoes.includes(shoe) &&
-		// if (shoe instanceof Shoes)
-
-		// for some reason this breaks if "shoe instanceof Shoes" is put
-		// instead and the array conditional version. This ONLY happens if findShoe function is running too.
-		// Bizzare. Please provie some ideas why that would ever happen?
-		typeof shoe[property] != "undefined" &&
-		typeof value === "number"
-	) {
-		const oldProperty = shoe[property];
-		shoe[property] = value;
-		return console.log(
-			`The ${property} was changed from ${oldProperty} to ${value}`,
-		);
-		//I'd like to add the Shoe array index to output too, but I'm struggling with reference errors. Advice welcome
-	} else {
-		throw new Error(`Could not find a shoe with such properties`);
-	}
-}
-
-// running the editShoeInformation function with exception handling
 try {
-	editShoeInformation(shoes[1], "value", 9.99);
+	shoes[1].updatePropertyValue("value", 9.99);
 } catch (error) {
-	console.log("Error editing shoe information: ", error.message);
+	console.log("Error updating shoe property: ", error.message);
 }
